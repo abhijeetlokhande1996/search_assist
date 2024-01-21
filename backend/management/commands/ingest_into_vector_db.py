@@ -1,4 +1,4 @@
-#
+# python manage.py ingest_into_vector_db
 from django.core.management.base import BaseCommand
 from langchain_community.vectorstores import FAISS
 from angle_emb import AnglE, Prompts
@@ -20,7 +20,7 @@ class Command(BaseCommand):
             'WhereIsAI/UAE-Large-V1', pooling_strategy='cls').cuda()
         angle.set_prompt(prompt=Prompts.C)
         candidates_for_embedding = []
-        batch_size = 100
+        batch_size = 10
         dim = 1024
         index = faiss.IndexFlatL2(dim)
 
