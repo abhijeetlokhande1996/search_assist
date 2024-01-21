@@ -11,3 +11,6 @@ class Product(models.Model):
     price = models.FloatField()
     description = models.TextField()
     primary_colour = models.CharField(max_length=20)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    text_for_vector = models.TextField(default=None, null=True)
