@@ -4,6 +4,7 @@ from backend.models import Product
 
 import faiss
 from angle_emb import AnglE, Prompts
+from config import DATA_DIR
 
 
 class Command(BaseCommand):
@@ -14,9 +15,9 @@ class Command(BaseCommand):
         angle = AnglE.from_pretrained(
             'WhereIsAI/UAE-Large-V1', pooling_strategy='cls').cuda()
         angle.set_prompt(prompt=Prompts.C)
-
+        index_filepath = str(DATA_DIR / "products.index")
         # Load the Faiss index
-        index = faiss.read_index("products.index")
+        index = faiss.read_index(index_filepath)
 
         query = {"text": "black shirts under 1000"}
         # Encode the query
@@ -33,3 +34,4 @@ class Command(BaseCommand):
             similar_product = Product.objects.all()[int(product_index)]
             print(
                 f"Similarity: {1 - distance:.4f}, Product: {similar_product.text_for_vector}")
+            break
