@@ -5,6 +5,7 @@ from config import DATA_DIR
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from django.core import serializers
 
 from backend.models import Product
@@ -25,6 +26,7 @@ def test(request):
     return JsonResponse(data)
 
 
+@require_POST
 @csrf_exempt
 def search_similar_products(request):
     data = json.loads(request.body)
@@ -46,7 +48,6 @@ def search_similar_products(request):
         response["products"].append({
             "id": similar_product.id,
             "product_name": similar_product.name,
-            "price": similar_product.price,
             "description": similar_product.description,
         })
 
