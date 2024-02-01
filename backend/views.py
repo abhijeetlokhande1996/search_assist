@@ -49,6 +49,7 @@ def search_similar_products(request):
             "id": similar_product.id,
             "product_name": similar_product.name,
             "description": similar_product.description,
+            "gender": similar_product.gender
         })
 
     return JsonResponse(response)

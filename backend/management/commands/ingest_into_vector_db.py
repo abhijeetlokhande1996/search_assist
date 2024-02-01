@@ -66,10 +66,10 @@ def use_openai():
 
     new_db = FAISS.load_local("products_openai_index", embeddings)
     num_documents = len(new_db.index_to_docstore_id)
-    print("Number of documents in the index: ", num_documents)
-    from pprint import pprint
-    pprint(new_db.similarity_search_with_score(
-        query="Skinny fit jeans for men under 2000"))
+    # print("Number of documents in the index: ", num_documents)
+    # from pprint import pprint
+    # pprint(new_db.similarity_search_with_score(
+    #     query="Skinny fit jeans for men under 2000"))
 
     # db.save_local("products_openai_index")
     # new_db = FAISS.load_local("products_openai_index", embeddings)

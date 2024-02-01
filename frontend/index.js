@@ -12,10 +12,23 @@ function go() {
     .then((resp) => resp.json())
     .then((data) => {
       console.log("---------- Result -----------");
-      console.log(data);
-      document.getElementById("result").innerHTML = "See the Console";
+
+      let table = "<table class='table'>";
+      table += "<tr><td>Id</td><td>Name</td><td>Gender</td></tr>";
+
+      data["products"].forEach((product) => {
+        table += "<tr>";
+        table += `<td>${product["id"]}</td>`;
+        table += `<td>${product["product_name"]}</td>`;
+        table += `<td>${product["gender"]}</td>`;
+        table += "</tr>";
+      });
+
+      table += "</table>";
+      document.getElementById("result").innerHTML = table;
     })
     .catch((err) => {
+      console.error(err);
       document.getElementById("result").innerHTML = "Error Occured";
     });
 }
